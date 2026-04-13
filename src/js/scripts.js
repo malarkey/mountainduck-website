@@ -944,6 +944,7 @@ syncIndexBannerAnimationState();
 
 const usingBannerSvg = document.getElementById("banner-using-svg");
 const usingBubbleGroup = usingBannerSvg?.querySelector(".using-bubbles");
+const usingFileLanesGroup = usingBannerSvg?.querySelector("#using-file-lanes");
 const usingBubbleLaneBounds = {
 height: 113,
 width: 60,
@@ -1306,8 +1307,8 @@ lane.stream.classList.add("using-file-lane-stream");
 lane.stream.dataset.direction = lane.direction;
 lane.stream.dataset.family = lane.family;
 
-if (usingBubbleGroup) {
-usingBubbleGroup.before(lane.stream);
+if (usingFileLanesGroup) {
+usingFileLanesGroup.append(lane.stream);
 } else {
 usingBannerSvg.append(lane.stream);
 }

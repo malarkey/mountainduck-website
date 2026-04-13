@@ -150,7 +150,8 @@
 
 <path fill="url(#using-cloud-grad)" fill-rule="evenodd" d="M681 326.667C681 146.254 826.874 0 1006.818 0c150.789 0 277.653 102.701 314.806 242.143 40.597-34.6 93.193-55.476 150.649-55.476C1600.803 186.667 1705 291.134 1705 420H681z" transform="matrix(-1 0 0 1 2386 0)"/>
 
-<!-- Center files -->
+<!-- File lanes -->
+<g id="using-file-lanes"></g>
 
 <!-- INSERT PARTICLE FILES HERE -->
 
@@ -289,7 +290,5 @@
 <circle fill="#fff" cx="34" cy="152" r="3"/>
 <circle fill="#fff" cx="28" cy="167" r="3"/>
 </g>
-
-<!-- File lanes -->
 
 </svg>
