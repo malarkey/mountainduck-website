@@ -497,7 +497,7 @@ margin-block: -1rem var(--spacing-m); }
 [data-tabs="using"] .alt-tabs li:not(:last-child) { margin-inline-end: var(--spacing-r); }
 
 [data-tabs="using"] .alt-tabs a {
-font-size: var(--font-size-m);
+font-size: var(--font-size-r);
 font-weight: var(--font-weight-m);
 text-decoration: none; }
 
@@ -1933,6 +1933,9 @@ margin-block: 0 var(--spacing-r); }
 /* Tabs variant */
 [data-tabs="using"] .alt-tabs {
 margin-block: -3rem var(--spacing-m); }
+
+[data-tabs="using"] .alt-tabs a {
+font-size: var(--font-size-m); }
 }
 
 
