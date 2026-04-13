@@ -1,0 +1,32 @@
+---
+layout: layouts/protocol.html
+name: Amazon S3
+
+lede: Browse Amazon Simple Storage Service like your hard disk.
+
+summary: Amazon S3 is a strong fit for durable object storage, large file libraries, and workflows that already live in the AWS ecosystem.
+
+icon: |
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="alt-icon"><path fill="#fff" fill-rule="evenodd" d="M147.62 139.502c8.48-5.194 27.755.16 31.515 1.278.72 0 18.556 4.235 15.517 14.064-1.44 4.794-9.118 29.005-22.876 36.277a7.997 7.997 0 0 1-11.4-5.174 7.99 7.99 0 0 1 3.962-8.97 21.34 21.34 0 0 0 7.038-7.99 184.1 184.1 0 0 1-72.626 15.981 159.44 159.44 0 0 1-89.263-26.13 7.99 7.99 0 0 1 .85-14.713 8 8 0 0 1 8.588 2.169c2.72 2.077 63.908 45.147 148.212 7.99a32.7 32.7 0 0 0-11.758-.879 8.003 8.003 0 0 1-10.718-2.717 7.984 7.984 0 0 1 2.96-11.186M94.19 9.015a54.18 54.18 0 0 1 35.194 11.906c9.278 8.361 10.188 19.298 10.2 31.36v.995q-.003 1.245-.014 2.506l-.007 1.01-.014 2.033-.005 1.023-.002 1.026v36.517a30.2 30.2 0 0 0 8.959 21.495 4.47 4.47 0 0 1-.4 6.073c-4.48 4.075-12.958 11.346-17.837 15.422a5.76 5.76 0 0 1-5.679.4 63 63 0 0 1-13.357-15.343 46.01 46.01 0 0 1-38.553 17.02 33.13 33.13 0 0 1-25.792-10.028 33.06 33.06 0 0 1-9.161-26.09c0-37.475 32.713-43.468 69.027-46.185a36.9 36.9 0 0 0-2.8-20.296 16 16 0 0 0-13.037-6.153c-9-.4-17.018 5.632-19.117 14.383a5.2 5.2 0 0 1-3.999 4.475L45 49.687a3.68 3.68 0 0 1-2.76-1.624 3.67 3.67 0 0 1-.44-3.17c4.72-25.25 26.316-35.878 52.39-35.878m12.559 69.758c-5.853-.1-11.7.436-17.437 1.598-10.504 1.942-17.974 11.313-17.517 21.974 0 21.575 22.476 21.495 30.474 6.073v.4a43.03 43.03 0 0 0 4.48-25.17Z"/></svg>
+
+docs:
+  - name: Documentation example
+    url: https://mountainduck.io
+  - name: Documentation example
+    url: https://mountainduck.io
+  - name: Documentation example
+    url: https://mountainduck.io
+
+protocolFeatures:
+  - Feature example
+  - Feature example
+  - Feature example
+
+downloads:
+  - name: Downloads example
+    url: https://mountainduck.io
+  - name: Downloads example
+    url: https://mountainduck.io
+  - name: Downloads example
+    url: https://mountainduck.io
+---

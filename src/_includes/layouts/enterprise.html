@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<h1 data-size="3xl" data-align-h="center">{{ title }}</h1>
+
+{{ lede | markdown | safe }}
+
+<div class="layout" data-layout="brussels">
+<div>
+{% include "partials/banner-enterprise.svg" %}
+</div><!-- one -->
+</div><!-- layout -->
+
+<div class="layout" data-layout="valletta">
+
+<div id="enterprise">
+{{ enterprise | markdown | safe }}
+</div><!-- one -->
+
+<div id="teams">
+{{ teams | markdown | safe }}
+</div><!-- two -->
+
+</div><!-- layout -->
+
+ {% include "partials/customers.html" %}
+
+{% endblock %}

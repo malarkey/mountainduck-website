@@ -1,0 +1,7 @@
+{
+  "blog": true,
+  "changelog": true,
+  "faqs": true,
+  "portfolio": false,
+  "team": false
+}

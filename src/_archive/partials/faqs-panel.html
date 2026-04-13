@@ -1,0 +1,42 @@
+{% set faqItems = collections.faqItems or [] %}
+{% set splitIndex = 5 %}
+
+{% if faqItems.length %}
+
+<h2 data-align-h="center" data-size="2xl">Frequently asked questions</h2>
+
+<div id="data-faq-stage">
+
+<ul data-faq-list="left">
+{% for item in faqItems %}
+{% if loop.index <= splitIndex %}
+<li>
+<button aria-controls="faq-answer-{{ item.fileSlug }}" aria-pressed="{% if loop.index == 1 %}true{% else %}false{% endif %}" data-faq-trigger{% if loop.index == 1 %} data-active="true"{% endif %} data-target="faq-answer-{{ item.fileSlug }}" type="button">{{ item.data.question }}</button>
+</li>
+{% endif %}
+{% endfor %}
+</ul>
+
+<ul data-faq-list="right">
+{% for item in faqItems %}
+{% if loop.index > splitIndex %}
+<li>
+<button aria-controls="faq-answer-{{ item.fileSlug }}" aria-pressed="false" data-faq-trigger data-target="faq-answer-{{ item.fileSlug }}" type="button">{{ item.data.question }}</button>
+</li>
+{% endif %}
+{% endfor %}
+</ul>
+
+<div id="data-faq-answer-shell">
+{% include "partials/img-faqs.svg" %}
+
+{% for item in faqItems %}
+<section data-faq-answer-panel id="faq-answer-{{ item.fileSlug }}"{% if not loop.first %} hidden{% endif %}>
+<h3 data-visibility="hidden">{{ item.data.question }}</h3>
+{{ item.data.answer | markdown | safe }}
+</section>
+{% endfor %}
+</div><!-- data-faq-answer-shell -->
+
+</div><!-- data-faq-stage -->
+{% endif %}

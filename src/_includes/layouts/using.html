@@ -1,0 +1,70 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<h1 data-size="3xl" data-align-h="center">{{ title }}</h1>
+
+<div class="layout" data-layout="amsterdam">
+<div>
+{% include "partials/banner-using.svg" %}
+</div><!-- one -->
+</div><!-- layout -->
+
+
+
+<section data-tabs="using">
+
+<ul class="alt-tabs">
+<li><a href="#install">Install</a></li>
+<li><a href="#connect">Connect</a></li>
+<li><a href="#open">Open</a></li>
+<li><a href="#edit">Edit</a></li>
+<li><a href="#sync">Sync</a></li>
+<li><a href="#share">Share</a></li>
+</ul>
+
+{{ lede | markdown | safe }}
+
+<div class="layout" data-content="benefits" data-layout="vienna">
+
+<article class="item-benefit" id="install">
+<img src="/images/placeholder-featured.svg" alt="">
+{{ install | markdown | safe }}
+</article><!-- one -->
+
+<article class="item-benefit" id="connect">
+<img src="/images/placeholder-featured.svg" alt="">
+{{ connect | markdown | safe }}
+</article><!-- two -->
+
+<article class="item-benefit" id="open">
+<img src="/images/placeholder-featured.svg" alt="">
+{{ open | markdown | safe }}
+</article><!-- three -->
+
+</div><!-- layout -->
+
+<div class="layout" data-content="benefits" data-layout="vienna">
+
+<article class="item-benefit" id="edit">
+<img src="/images/placeholder-featured.svg" alt="">
+{{ edit | markdown | safe }}
+</article><!-- one -->
+
+<article class="item-benefit" id="sync">
+<img src="/images/placeholder-featured.svg" alt="">
+{{ sync | markdown | safe }}
+</article><!-- two -->
+
+<article class="item-benefit" id="share">
+<img src="/images/placeholder-featured.svg" alt="">
+{{ share | markdown | safe }}
+</article><!-- three -->
+
+</div><!-- layout -->
+
+</section>
+
+ {% include "partials/promo.html" %}
+
+{% endblock %}

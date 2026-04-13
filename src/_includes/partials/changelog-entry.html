@@ -1,0 +1,84 @@
+<article class="item-changelog" id="release-{{ entry.fileSlug }}">
+
+<div class="layout" data-layout="london">
+
+<div>
+<h3>
+{{ entry.data.version }}
+{% if entry.data.statusLabel %}
+<span data-release-status{% if entry.data.statusTone %} data-tone="{{ entry.data.statusTone | changelogToken }}"{% endif %}>{{ entry.data.statusLabel }}</span>
+{% endif %}
+</h3>
+
+{% if entry.data.releaseDateLabel %}
+<p data-release-date-label>{{ entry.data.releaseDateLabel }}</p>
+{% elseif entry.data.releaseDate %}
+<time datetime="{{ entry.data.releaseDate }}">{{ entry.data.releaseDate | dateFilter("d LLL yyyy") }}</time>
+{% endif %}
+
+{% if entry.templateContent %}
+<div data-release-body>
+{{ entry.templateContent | safe }}
+</div><!-- data-release-body -->
+{% endif %}
+
+{% if entry.data.callouts and entry.data.callouts.length %}
+<div data-callouts>
+{% for callout in entry.data.callouts %}
+<section data-callout{% if callout.tone %} data-tone="{{ callout.tone | changelogToken }}"{% endif %}>
+{% if callout.title %}
+<h4>{{ callout.title }}</h4>
+{% endif %}
+{% if callout.body %}
+{{ callout.body | markdown | safe }}
+{% endif %}
+{% if callout.url %}
+<p><a href="{{ callout.url }}">{{ callout.linkText or callout.url }}</a></p>
+{% endif %}
+</section>
+{% endfor %}
+</div><!-- data-callouts -->
+{% endif %}
+
+{% if entry.data.requirements and entry.data.requirements.length %}
+<details data-requirements-disclosure>
+<summary>Requirements</summary>
+<ul aria-label="Requirements for version {{ entry.data.version }}" data-requirements>
+{% for requirement in entry.data.requirements %}
+<li><span data-changelog-chip>{{ requirement }}</span></li>
+{% endfor %}
+</ul>
+</details>
+{% endif %}
+
+{% if entry.data.downloads and entry.data.downloads.length %}
+<details data-downloads-disclosure>
+<summary>Available downloads</summary>
+<ul aria-label="Downloads for version {{ entry.data.version }}" data-downloads>
+{% for download in entry.data.downloads %}
+{% set downloadLabel = download.label | replace("Download ", "") %}
+{% if downloadLabel == "(macOS)" %}
+{% set downloadLabel = "macOS" %}
+{% endif %}
+<li><a class="btn" data-variant="s" href="{{ download.url }}">{{ downloadLabel }}</a></li>
+{% endfor %}
+</ul>
+</details>
+{% endif %}
+</div><!-- one -->
+
+<div>
+{% if entry.data.changes and entry.data.changes.length %}
+<ul aria-label="Changes in version {{ entry.data.version }}" data-change-list>
+{% for change in entry.data.changes %}
+<li>
+<b data-change-type="{{ change.type | changelogToken }}">{{ change.type }}</b>
+<div>{{ change.summary | markdown | safe }}</div>
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+</div><!-- two -->
+
+</div><!-- layout -->
+</article>

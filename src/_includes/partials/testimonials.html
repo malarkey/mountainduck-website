@@ -1,0 +1,23 @@
+{% set testimonials = collections.testimonials or [] %}
+
+{% if testimonials.length %}
+<div id="data-testimonials">
+
+<h2>What customers say</h2>
+
+<div id="data-testimonials-scroller">
+{% for item in testimonials %}
+
+{% if loop.index <= 6 %}
+<blockquote>
+{% include "partials/icon-quote.svg" %}
+{{ item.templateContent | safe }}
+{% if item.data.name %}<footer>{{ item.data.name }}</footer>{% endif %}
+</blockquote>
+{% endif %}
+
+{% endfor %}
+</div>
+</div>
+
+{% endif %}

@@ -1,0 +1,249 @@
+{% set assetHash = global.random() %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "partials/head.html" %}
+
+<body id="{{ site.siteID }}">
+
+{% include "partials/header.html" %}
+
+
+
+<h1 data-size="3xl" data-align-h="center">{{ title }}</h1>
+
+<form class="buy-form">
+
+<div class="layout" data-layout="stockholm">
+
+<div></div><!-- one -->
+
+<div>
+
+<h2>Choose a license</h2>
+
+<label class="radio-control">
+<input data-buy-amount="49.00" type="radio" name="buy-qty" value="1" checked>1 license
+<div class="input-price">USD &#36;49.00</div>
+</label>
+
+<hr data-function="spacer">
+
+<h3>
+<button aria-controls="buy-more" aria-expanded="false" class="btn-heading" data-disclosure-toggle data-hide-text="Hide more quantities" data-show-text="Show more quantities" data-toggle-target="buy-more" type="button">Show more quantities</button>
+</h3>
+
+<div hidden id="buy-more">
+
+<label class="radio-control">
+<input data-buy-amount="193.00" type="radio" name="buy-qty" value="5">5 licenses
+<div class="buy-price">USD &#36;193.00 <span>-1&#37;</span></div>
+</label>
+
+<label class="radio-control">
+<input data-buy-amount="348.00" type="radio" name="buy-qty" value="10">10 licenses
+<div class="buy-price">USD &#36;348.00 <span>-10&#37;</span></div>
+</label>
+
+<label class="radio-control">
+<input data-buy-amount="627.00" type="radio" name="buy-qty" value="20">20 licenses
+<div class="buy-price">USD &#36;627.00 <span>-19&#37;</span></div>
+</label>
+
+<label class="radio-control">
+<input data-buy-amount="1366.00" type="radio" name="buy-qty" value="50">50 licenses
+<div class="buy-price">USD &#36;1366.00 <span>-29&#37;</span></div>
+</label>
+
+<div class="radio-control">
+
+<div>
+<input id="buy-qty-custom" type="radio" name="buy-qty" value="custom"></label>
+</div><!-- one -->
+
+<div>
+<label for="buy-qty-custom">Bulk buy</label>
+</div><!-- two -->
+
+<div>
+<label for="buy-custom" data-visibility="hidden">Qty</label>
+<input type="number" name="buy-custom" id="buy-custom" inputmode="numeric" min="60" step="10" style="inline-size: 8ch;">
+&nbsp;<small style="display:inline;"">USD &#36;20 per license</small>
+</div><!-- three -->
+
+</div><!-- radio-control -->
+
+</div><!-- buy-more -->
+
+</div><!-- two -->
+
+<div>
+<h2>Cart total</h2>
+
+<label for="buy-currency">Currency</label>
+<div class="select">
+<select id="buy-currency" name="currency">
+<option value="usd">$</option>
+<option value="euro">€</option>
+</select>
+</div><!-- select -->
+
+<div>
+<label for="buy-amount">Amount</label>
+<input id="buy-amount" name="amount" type="text" readonly>
+</div>
+
+</div><!-- three -->
+
+</div><!-- layout -->
+
+
+
+
+<div id="buy-you" class="layout" data-layout="stockholm">
+
+<div></div><!-- one -->
+
+<div>
+<hr>
+<h2>You</h2>
+
+<div>
+<label for="buy-name">Name or company <span>*</span></label>
+<input id="buy-name" name="buy-name" type="text">
+<p data-size="xs">* Used in the registration key.</p>
+</div>
+
+<div>
+<label for="buy-email">Email</label>
+<input id="buy-email" name="buy-email" type="email">
+</div>
+
+<div>
+<label for="buy-address">Address</label>
+<textarea id="buy-address" name="buy-address"></textarea>
+</div>
+
+<div>
+<label for="buy-country">Country</label>
+<input id="buy-country" name="buy-country" type="text">
+</div>
+
+<div>
+<label for="buy-vat">VAT number <span>(optional)</span></label>
+<input id="buy-vat" name="buy-vat" type="text">
+</div>
+
+</div><!-- two -->
+
+<div>
+<img src="/images/img-buy-1.svg" alt="">
+<p data-size="r" data-align-h="center">Tell us who you are and how to reach you.</p>
+</div><!-- three -->
+
+</div><!-- layout -->
+
+
+
+<div id="buy-payment" class="layout" data-layout="stockholm">
+
+<div></div><!-- one -->
+
+<div>
+<hr>
+<h2>Payment</h2>
+
+<div>
+<label for="buy-coupon">Discount code (if you have one)</label>
+<input id="buy-coupon" name="buy-coupon" type="text">
+</div>
+
+<br>
+
+<div>
+<button>&#63743; Pay</button> &nbsp; <button>PayPal</button>
+</div>
+
+<br>
+
+<div>
+<label for="buy-card">Or enter card details</label>
+<input id="buy-card" name="buy-card" type="text">
+</div>
+
+<br>
+
+<div data-layout="flex">
+
+<div>
+<button>Checkout</button>
+</div><!-- one -->
+
+<div>
+<p data-size="s">Got Mountain Duck v4? <a href="/buy/upgrade">Upgrade</a></p>
+</div><!-- two -->
+
+</div><!-- flex -->
+
+<p data-size="xs">Mountain Duck is licensed per seat. One license can be used on any number of computers as long as the same person is using the software. A license applies to one major version and upgrade discounts are available depending on when the previous version was purchased.</p>
+
+</div><!-- two -->
+
+<div>
+<img src="/images/img-buy-2.svg" alt="">
+<p data-size="r" data-align-h="center">Choose how you want to pay for Mountain Duck.</p>
+</div><!-- three -->
+
+</div><!-- layout -->
+
+</form>
+
+
+
+<div id="buy-discounts" class="layout" data-layout="stockholm">
+
+<div></div><!-- one -->
+
+<div>
+
+<hr>
+
+<h3>Discounts</h3>
+
+<p data-size="s">30&#37; off if you own a Cyberduck registration key.</p>
+
+<form action="https://reg.mountainduck.io/lookup" id="recover" role="form">
+<div data-layout="flex">
+<div><input type="email" placeholder="Email address" id="recover-email" name="email"></div>
+<div><button>Lookup</button></div>
+</div><!-- layout -->
+<script charset="utf-8">$(document).ready((()=>{var a={target:`#lookup-result`,clearForm:!0};$(`form#recover`).ajaxForm(a)}))</script>
+</form>
+
+<ul data-size="s">
+<li>30&#37; for academia. (Academic email address required.)</li>
+<li>30&#37; for switching from ExpanDrive, NetDrive, or Transmit Disk.</li>
+<li>Ask us for large-scale enterprise deployments.</li>
+</ul>
+
+<div class="alt-btn">
+<a class="btn" href="/contact/">Contact us</a>
+</div><!-- btn -->
+
+</div><!-- two -->
+
+<div>
+<img src="/images/img-buy-3.svg" alt="">
+<p data-size="r" data-align-h="center">We give money off to current and new customers.</p>
+</div><!-- three -->
+
+</div><!-- layout -->
+
+
+
+{% include "partials/footer.html" %}
+<script src="{{ site.assetPath }}/js/scripts.js"></script>
+</body>
+
+</html>

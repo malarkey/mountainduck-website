@@ -1,0 +1,43 @@
+{% extends "layouts/base.html" %}
+
+{% set protocolEntries = collections.protocols or [] %}
+
+{% block content %}
+
+<div class="layout" data-layout="brussels">
+
+<div>
+<h1>{{ title }}</h1>
+
+{{ lede | markdown | safe }}
+
+{% include "partials/protocol-jump-list.html" %}
+
+</div><!-- one -->
+
+</div><!-- layout -->
+
+
+
+
+
+{% if protocolEntries.length %}
+<section aria-label="Available protocols">
+
+<div class="protocol-grid">
+{% for item in protocolEntries %}
+{% set protocolId = "protocol-" + ((item.data.name | slug) | replace(".", "-")) %}
+<article class="data-protocol-card" id="{{ protocolId }}">
+<a href="{{ item.url }}">
+{% if item.data.icon %}<p class="data-protocol-card-icon">{{ item.data.icon | safe }}</p>{% endif %}
+<h2>{{ item.data.name }}</h2>
+{% if item.data.summary %}<p>{{ item.data.summary }}</p>{% endif %}
+</a>
+</article>
+{% endfor %}
+</div><!-- protocol-grid -->
+
+</section>
+{% endif %}
+
+{% endblock %}

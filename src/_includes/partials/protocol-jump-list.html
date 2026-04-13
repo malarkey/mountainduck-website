@@ -1,0 +1,14 @@
+{% set protocolEntries = collections.protocols or [] %}
+
+{% if protocolEntries.length %}
+<ul class="data-protocol-jump-list">
+{% for item in protocolEntries %}
+{% set protocolId = "protocol-" + ((item.data.name | slug) | replace(".", "-")) %}
+<li><a href="#{{ protocolId }}" title="{{ item.data.name }}" aria-label="{{ item.data.name }}" data-protocol-jump-link data-target="{{ protocolId }}">
+{% if item.data.icon %}
+<span class="data-protocol-card-icon">{{ item.data.icon | safe }}</span>
+{% endif %}
+</a></li>
+{% endfor %}
+</ul>
+{% endif %}

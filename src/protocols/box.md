@@ -1,0 +1,27 @@
+---
+layout: layouts/protocol.html
+name: Box
+lede: Enterprise cloud content management for document-heavy teams with governance and sharing requirements.
+summary: Box is a good match for structured collaboration, secure file sharing, and organizations with strong compliance or review workflows.
+icon: |
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="alt-icon"><path fill="#fff" fill-rule="evenodd" d="M180 0c11.046 0 20 8.954 20 20v160c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V20C0 8.954 8.954 0 20 0zm7.207 120.588a7.01 7.01 0 0 0-9.702 1.274l-15.452 20.591-15.453-20.588a7.007 7.007 0 0 0-9.702-1.275 6.965 6.965 0 0 0-1.48 9.648l17.901 23.858-17.898 23.86a6.96 6.96 0 0 0 1.477 9.646 7.013 7.013 0 0 0 9.705-1.27l15.45-20.594 15.452 20.593a7.01 7.01 0 0 0 9.702 1.272 6.967 6.967 0 0 0 1.481-9.648l-17.901-23.859 17.898-23.861a6.96 6.96 0 0 0-1.478-9.647M16.994 90A6.99 6.99 0 0 0 10 96.828v57.82h.015c.31 18.98 15.83 34.276 34.94 34.276 13.384 0 25.005-7.505 30.878-18.52 5.874 11.016 17.495 18.52 30.879 18.52 19.305 0 34.955-15.606 34.955-34.853 0-19.25-15.65-34.853-34.954-34.853-13.385 0-25.006 7.504-30.88 18.518-5.873-11.015-17.494-18.517-30.878-18.517a34.86 34.86 0 0 0-20.966 6.965l-.003-29.356C23.904 93.044 20.808 90 16.994 90m27.96 43.166c11.58 0 20.967 9.359 20.967 20.905 0 11.545-9.386 20.905-20.966 20.905s-20.967-9.36-20.967-20.905 9.387-20.905 20.967-20.905m61.759 0c11.579 0 20.967 9.358 20.967 20.904s-9.388 20.906-20.967 20.906c-11.58 0-20.967-9.36-20.967-20.906s9.387-20.904 20.967-20.904"/></svg>
+
+docs:
+  - name: Documentation example
+    url: https://mountainduck.io
+  - name: Documentation example
+    url: https://mountainduck.io
+  - name: Documentation example
+    url: https://mountainduck.io
+protocolFeatures:
+  - Feature example
+  - Feature example
+  - Feature example
+downloads:
+  - name: Downloads example
+    url: https://mountainduck.io
+  - name: Downloads example
+    url: https://mountainduck.io
+  - name: Downloads example
+    url: https://mountainduck.io
+---

@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="layout" data-layout="brussels">
+
+<div>
+
+<h1>{{ title }}</h1>
+
+{{ lede | markdown | safe }}
+
+<hr>
+
+{{ content | safe }}
+
+</div><!-- one -->
+
+</div><!-- layout -->
+
+{% include "partials/promo.html" %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+<header role="banner">
+
+<div>
+{% if page.url != "/" %}
+<div id="banner-logo">
+<a href="/" aria-label="{{ site.name }}" title="Home">{% include "partials/logo-banner.svg" %}<span data-visibility="hidden">{{ site.name }}</span></a>
+</div><!-- banner-logo -->
+{% endif %}
+</div><!-- one -->
+
+<nav>
+<ul>
+{% for item in navigation.items %}
+<li><a href="{{ item.url }}"{% if item.class %} class="{{ item.class }}"{% endif %}{% if item.dataVariant %} data-variant="{{ item.dataVariant }}"{% endif %} {{ helpers.getLinkActiveState(item.url, page.url) | safe }}>{{ item.text }}</a></li>
+{% endfor %}
+</ul>
+</nav>
+
+</header>

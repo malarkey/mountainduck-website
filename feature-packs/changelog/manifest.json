@@ -1,0 +1,11 @@
+{
+  "featureFlag": "changelog",
+  "mainNavigationItems": [
+    {
+      "text": "Changelog",
+      "url": "/changelog/"
+    }
+  ],
+  "footerNavigationItems": [],
+  "cms": true
+}

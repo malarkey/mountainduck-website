@@ -1,0 +1,32 @@
+{% extends "layouts/base.html" %}
+
+{% set featureEntries = collections.features or [] %}
+
+{% block content %}
+
+<div class="layout" data-layout="brussels">
+
+<div>
+<h1 data-size="3xl">{{ title }}</h1>
+
+{{ lede | markdown | safe }}
+
+{% include "partials/cryptomator.html" %}
+
+<hr>
+
+<div class="layout" data-layout="valletta">
+{% include "partials/features.html" %}
+</div><!-- layout -->
+
+<h2>Protocols</h2>
+
+{% include "partials/protocol-jump-list.html" %}
+
+</div><!-- one -->
+
+</div><!-- layout -->
+
+{% include "partials/promo.html" %}
+
+{% endblock %}

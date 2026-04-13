@@ -1,0 +1,78 @@
+{% extends "layouts/base.html" %}
+
+{% set changelogEntries = collections.changelogEntries or [] %}
+{% set visibleLatestCount = latestCount or 3 %}
+{% set hasPreviousVersions = changelogEntries.length > visibleLatestCount %}
+
+{% block content %}
+
+<div class="layout" data-layout="berlin">
+
+<div>
+<h1>{{ title }}</h1>
+
+{% if lede %}
+{{ lede | markdown | safe }}
+{% endif %}
+
+</div><!-- one -->
+
+</div><!-- layout -->
+
+{% if changelogEntries.length %}
+<section aria-labelledby="latest-releases">
+<h2 class="visually-hidden" id="latest-releases">Latest releases</h2>
+{% for item in changelogEntries %}
+{% if loop.index <= visibleLatestCount %}
+{% set entry = item %}
+{% include "partials/changelog-entry.html" %}
+{% endif %}
+{% endfor %}
+</section>
+
+{% if hasPreviousVersions %}
+<section id="previous-versions">
+<h2>{{ previousVersionsLabel or "Previous versions" }}</h2>
+<p>
+<button aria-controls="previous-versions-content" aria-expanded="false" class="btn" data-disclosure-toggle data-hide-text="Hide previous versions" data-show-text="Show previous versions" data-toggle-target="previous-versions-content" type="button">Show previous versions</button>
+</p>
+<div hidden id="previous-versions-content">
+{% for item in changelogEntries %}
+{% if loop.index > visibleLatestCount %}
+{% set entry = item %}
+{% include "partials/changelog-entry.html" %}
+{% endif %}
+{% endfor %}
+</div>
+</section>
+{% endif %}
+{% else %}
+<p>No changelog entries yet.</p>
+{% endif %}
+
+{% if legacyReleasesLabel %}
+<section class="legacy-releases" id="legacy-releases">
+<div class="layout" data-layout="berlin">
+<div>
+<h2>{{ legacyReleasesLabel }}</h2>
+<p>
+<button aria-controls="legacy-releases-content" aria-expanded="false" class="btn" data-disclosure-toggle data-hide-text="Hide legacy versions" data-show-text="Show legacy versions" data-toggle-target="legacy-releases-content" type="button">Show legacy versions</button>
+</p>
+</div>
+</div>
+
+<div hidden id="legacy-releases-content">
+<div class="layout" data-layout="berlin">
+<div>
+{% if legacyReleasesIntro %}
+{{ legacyReleasesIntro | markdown | safe }}
+{% endif %}
+</div>
+</div>
+
+{% include "partials/legacy-releases.html" %}
+</div>
+</section>
+{% endif %}
+
+{% endblock %}

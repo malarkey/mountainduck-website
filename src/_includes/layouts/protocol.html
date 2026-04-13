@@ -1,0 +1,87 @@
+{% extends "layouts/base.html" %}
+
+{% set protocolEntries = collections.protocols or [] %}
+
+{% block content %}
+
+<div class="layout" data-layout="zagreb">
+
+<div>
+
+<h1 data-icon>{% if icon %}<span class="data-protocol-hero-icon">{{ icon | safe }}</span>{% endif %} {{ name }}</h1>
+
+{% if lede %}
+<p class="alt-lede">{{ lede }}</p>
+{% endif %}
+
+{% if summary %}<p>{{ summary }}</p>{% endif %}
+
+<hr>
+
+<div data-layout="flex">
+
+<div>
+{% if protocolFeatures and protocolFeatures.length %}
+<h2 data-size="m">Features</h2>
+<ul data-size="s">
+{% for item in protocolFeatures %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+</div><!-- one -->
+
+<div>
+{% if docs and docs.length %}
+<h2 data-size="m">Documentation</h2>
+<ul data-size="s">
+{% for item in docs %}
+<li><a href="{{ item.url }}">{{ item.name }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+</div><!-- two -->
+
+<div>
+{% if downloads and downloads.length %}
+<h2 data-size="m">Downloads</h2>
+<ul data-size="s">
+{% for item in downloads %}
+<li><a href="{{ item.url }}">{{ item.name }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+</div><!-- three -->
+
+</div><!-- layout -->
+
+</div><!-- one -->
+
+<div>
+
+<div class="alt-btn">
+<a class="btn" data-variant="s" href="/protocols/">Back to compatibility</a>
+</div><!-- btn -->
+
+<hr>
+
+<h3 data-size="r">All protocols</h3>
+
+<ul class="alt-directory">
+{% for item in protocolEntries %}
+<li>
+<a href="{{ item.url }}"{% if item.url == page.url %} aria-current="page"{% endif %}>
+{% if item.data.icon %}{{ item.data.icon | safe }}{% endif %}
+{{ item.data.name }}
+</a>
+</li>
+{% endfor %}
+</ul>
+
+</div><!-- two -->
+
+</div><!-- layout -->
+
+{% include "partials/promo.html" %}
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="layout" data-layout="brussels">
+
+<div>
+
+<h1>{{ title }}</h1>
+
+{{ lede | markdown | safe }}
+
+<hr>
+
+{{ content | safe }}
+
+<hr>
+
+<h2>Compared with third-party apps</h2>
+
+<div data-tabs>
+<div aria-label="Comparison platforms" role="tablist" data-tab-list>
+<button aria-controls="comparison-panel-macos" aria-selected="true" data-active="true" data-tab-button data-target="comparison-panel-macos" id="comparison-tab-macos" role="tab" type="button">macOS</button>
+<button aria-controls="comparison-panel-windows" aria-selected="false" data-tab-button data-target="comparison-panel-windows" id="comparison-tab-windows" role="tab" type="button">Windows</button>
+</div>
+
+<section aria-labelledby="comparison-tab-macos" data-tab-panel id="comparison-panel-macos" role="tabpanel">
+{% if macos %}
+{{ macos | markdown | safe }}
+{% endif %}
+</section>
+
+<section aria-labelledby="comparison-tab-windows" data-tab-panel hidden id="comparison-panel-windows" role="tabpanel">
+{% if windows %}
+{{ windows | markdown | safe }}
+{% endif %}
+</section>
+</div>
+
+</div><!-- one -->
+</div><!-- layout -->
+
+{% include "partials/promo.html" %}
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "text": "Using Mountain Duck",
+      "url": "/using/"
+    },
+    {
+      "text": "Features",
+      "url": "/features/"
+    },
+    {
+      "text": "Compatability",
+      "url": "/protocols/"
+    },
+    {
+      "text": "Enterprise",
+      "url": "/buy/enterprise/"
+    },
+    {
+      "text": "Buy",
+      "class": "btn",
+      "dataVariant": "s",
+      "url": "/buy/"
+    }
+  ]
+}
