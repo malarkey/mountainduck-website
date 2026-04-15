@@ -164,6 +164,10 @@
 
 <ellipse id="#using-files-glass" cx="824.019" cy="404.521" fill="url(#using-files-glass-grad)" rx="119" ry="123.5" style="mix-blend-mode:darken"/>
 
+<g id="using-rickroll" transform="translate(700 280)">
+<image href="/images/index-egg-image.webp" height="250" width="250" />
+</g>
+
 <!-- Static elements -->
 
 <g id="using-static" fill="none" fill-rule="evenodd">
@@ -297,5 +301,9 @@
 <circle fill="#fff" cx="34" cy="152" r="3"/>
 <circle fill="#fff" cx="28" cy="167" r="3"/>
 </g>
+
+<path id="using-trigger" fill="transparent" pointer-events="all" d="M704 281h240v248H704z">
+<title>?</title>
+</path>
 
 </svg>

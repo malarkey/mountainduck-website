@@ -417,6 +417,7 @@ const indexOutputLeftParticles = [];
 const indexDialFaces = indexBannerSvg ? Array.from(indexBannerSvg.querySelectorAll(".index-dial-face")) : [];
 const indexKnobs = Array.from(document.querySelectorAll("#index-banner .index-knob-rotator"));
 const indexAnimationToggle = indexBannerSvg?.querySelector("[data-animation-toggle]");
+const indexHeatTrigger = indexBannerSvg?.querySelector("#index-trigger");
 const indexSliders = Array.from(document.querySelectorAll("#index-banner .index-slider"));
 
 if (indexBanner && indexBannerSvg && indexAnimationToggle) {
@@ -425,6 +426,85 @@ let indexOutputStream = null;
 let indexOutputFallStream = null;
 let indexOutputLeftStream = null;
 let indexInputStream = null;
+const isIndexHeatOn = () => indexBannerSvg.dataset.heat === "on";
+
+const clearIndexHeatShakeState = (particle) => {
+particle.removeAttribute("data-heat-shake");
+particle.style.removeProperty("--index-heat-particle-rotate");
+particle.style.removeProperty("--index-heat-particle-scale");
+particle.style.removeProperty("--index-heat-particle-x");
+particle.style.removeProperty("--index-heat-particle-y");
+particle.style.removeProperty("opacity");
+particle.style.removeProperty("rotate");
+particle.style.removeProperty("scale");
+particle.style.removeProperty("translate");
+};
+
+const freezeIndexHeatShakeParticle = (particle) => {
+const computedStyle = window.getComputedStyle(particle);
+const computedRotate = computedStyle.rotate && computedStyle.rotate !== "none" ? computedStyle.rotate : "0deg";
+const computedScale = computedStyle.scale && computedStyle.scale !== "none" ? computedStyle.scale : "1";
+const computedTranslate = computedStyle.translate && computedStyle.translate !== "none" ? computedStyle.translate.split(/\s+/) : ["0px", "0px"];
+const computedTranslateX = computedTranslate[0] || "0px";
+const computedTranslateY = computedTranslate[1] || "0px";
+
+particle.removeAttribute("data-run-active");
+particle.dataset.heatShake = "true";
+particle.style.opacity = "1";
+particle.style.rotate = computedRotate;
+particle.style.scale = computedScale;
+particle.style.translate = `${computedTranslateX} ${computedTranslateY}`;
+particle.style.setProperty("--index-heat-particle-rotate", computedRotate);
+particle.style.setProperty("--index-heat-particle-scale", computedScale);
+particle.style.setProperty("--index-heat-particle-x", computedTranslateX);
+particle.style.setProperty("--index-heat-particle-y", computedTranslateY);
+};
+
+const syncIndexHeatState = () => {
+const shouldShakeConveyorParticles = isIndexHeatOn();
+
+for (const bubble of indexBubbleParticles) {
+if (shouldShakeConveyorParticles) {
+bubble.removeAttribute("data-rise-active");
+}
+}
+
+for (const outputFile of indexOutputParticles) {
+if (shouldShakeConveyorParticles) {
+outputFile.removeAttribute("data-rise-active");
+}
+}
+
+for (const outputFile of indexOutputFallParticles) {
+if (shouldShakeConveyorParticles) {
+outputFile.removeAttribute("data-fall-active");
+}
+}
+
+for (const inputFile of indexInputParticles) {
+if (shouldShakeConveyorParticles && inputFile.dataset.runActive === "true") {
+freezeIndexHeatShakeParticle(inputFile);
+continue;
+}
+
+clearIndexHeatShakeState(inputFile);
+}
+
+for (const outputFile of indexOutputLeftParticles) {
+if (shouldShakeConveyorParticles && outputFile.dataset.runActive === "true") {
+freezeIndexHeatShakeParticle(outputFile);
+continue;
+}
+
+clearIndexHeatShakeState(outputFile);
+}
+
+for (const slider of indexSliders) {
+if (shouldShakeConveyorParticles) {
+slider.removeAttribute("data-slide-active");
+}
+}
+};
 
 const setIndexBannerAnimationState = (isRunning) => {
 const animationState = isRunning ? "on" : "off";
@@ -442,6 +522,7 @@ bubble.removeAttribute("data-rise-active");
 
 for (const inputFile of indexInputParticles) {
 inputFile.removeAttribute("data-run-active");
+clearIndexHeatShakeState(inputFile);
 }
 
 for (const outputFile of indexOutputParticles) {
@@ -454,6 +535,7 @@ outputFile.removeAttribute("data-fall-active");
 
 for (const outputFile of indexOutputLeftParticles) {
 outputFile.removeAttribute("data-run-active");
+clearIndexHeatShakeState(outputFile);
 }
 
 for (const dialFace of indexDialFaces) {
@@ -486,6 +568,13 @@ indexBanner.dataset.animationOverride = "true";
 setIndexBannerAnimationState(!isRunning);
 };
 
+const toggleIndexHeatState = () => {
+const nextState = indexBannerSvg.dataset.heat === "on" ? "off" : "on";
+
+indexBannerSvg.dataset.heat = nextState;
+syncIndexHeatState();
+};
+
 indexAnimationToggle.addEventListener("click", () => {
 toggleIndexBannerAnimationState();
 });
@@ -503,6 +592,15 @@ if (typeof reducedMotionPreference.addEventListener === "function") {
 reducedMotionPreference.addEventListener("change", syncIndexBannerAnimationState);
 } else if (typeof reducedMotionPreference.addListener === "function") {
 reducedMotionPreference.addListener(syncIndexBannerAnimationState);
+}
+
+indexBannerSvg.dataset.heat = "off";
+
+if (indexHeatTrigger) {
+indexHeatTrigger.style.pointerEvents = "auto";
+indexHeatTrigger.addEventListener("click", () => {
+toggleIndexHeatState();
+});
 }
 
 const getRandomIndexNumber = (minimum, maximum) => {
@@ -801,7 +899,7 @@ const scheduleIndexBubbleMotion = (bubble, delay) => {
 window.setTimeout(() => {
 const duration = getRandomIndexSliderDelay(3200, 5600);
 
-if (indexBanner.dataset.animation === "on") {
+if (indexBanner.dataset.animation === "on" && !isIndexHeatOn()) {
 refreshIndexBubbleParticle(bubble, duration);
 bubble.removeAttribute("data-rise-active");
 void bubble.getBoundingClientRect();
@@ -818,7 +916,7 @@ const scheduleIndexOutputMotion = (outputFile, outputMaskBounds, delay) => {
 window.setTimeout(() => {
 const duration = getRandomIndexSliderDelay(8600, 12800);
 
-if (indexBanner.dataset.animation === "on") {
+if (indexBanner.dataset.animation === "on" && !isIndexHeatOn()) {
 refreshIndexOutputParticle(outputFile, outputMaskBounds, duration);
 void outputFile.getBoundingClientRect();
 outputFile.dataset.riseActive = "true";
@@ -832,7 +930,8 @@ scheduleIndexOutputMotion(outputFile, outputMaskBounds, duration + getRandomInde
 
 const scheduleIndexOutputLeftMotion = (outputFile, outputMotionConfig, delay) => {
 window.setTimeout(() => {
-if (indexBanner.dataset.animation === "on") {
+if (indexBanner.dataset.animation === "on" && !isIndexHeatOn()) {
+clearIndexHeatShakeState(outputFile);
 refreshIndexOutputLeftParticle(outputFile, outputMotionConfig);
 void outputFile.getBoundingClientRect();
 outputFile.dataset.runActive = "true";
@@ -846,7 +945,8 @@ scheduleIndexOutputLeftMotion(outputFile, outputMotionConfig, outputMotionConfig
 
 const scheduleIndexInputMotion = (inputFile, inputMotionConfig, delay) => {
 window.setTimeout(() => {
-if (indexBanner.dataset.animation === "on") {
+if (indexBanner.dataset.animation === "on" && !isIndexHeatOn()) {
+clearIndexHeatShakeState(inputFile);
 refreshIndexInputParticle(inputFile, inputMotionConfig);
 void inputFile.getBoundingClientRect();
 inputFile.dataset.runActive = "true";
@@ -862,7 +962,7 @@ const scheduleIndexOutputFallMotion = (outputFile, outputMaskBounds, delay) => {
 window.setTimeout(() => {
 const duration = getRandomIndexSliderDelay(7600, 11600);
 
-if (indexBanner.dataset.animation === "on") {
+if (indexBanner.dataset.animation === "on" && !isIndexHeatOn()) {
 refreshIndexOutputFallParticle(outputFile, outputMaskBounds, duration);
 void outputFile.getBoundingClientRect();
 outputFile.dataset.fallActive = "true";
@@ -878,7 +978,7 @@ const scheduleIndexSliderMotion = (slider) => {
 const nextDelay = getRandomIndexSliderDelay(1400, 4200);
 
 window.setTimeout(() => {
-if (indexBanner.dataset.animation === "on") {
+if (indexBanner.dataset.animation === "on" && !isIndexHeatOn()) {
 slider.dataset.slideActive = "true";
 
 window.setTimeout(() => {
@@ -960,7 +1060,7 @@ const scheduleIndexDialMotion = (dialFace) => {
 const nextDelay = getRandomIndexSliderDelay(2200, 5600);
 
 window.setTimeout(() => {
-if (indexBanner.dataset.animation === "on") {
+if (indexBanner.dataset.animation === "on" && !isIndexHeatOn()) {
 const nextRotation = getRandomIndexSliderDelay(-90, 90);
 
 dialFace.style.rotate = `${nextRotation}deg`;
@@ -995,6 +1095,7 @@ scheduleIndexKnobMotion(knob);
 }
 
 syncIndexBannerAnimationState();
+syncIndexHeatState();
 }
 
 const usingBannerSvg = document.getElementById("banner-using-svg");
@@ -1141,6 +1242,8 @@ const usingBubbleParticles = [];
 const usingFileParticles = [];
 const usingDialFaces = usingBannerSvg ? Array.from(usingBannerSvg.querySelectorAll(".using-dial-face")) : [];
 const usingDialHands = usingBannerSvg ? Array.from(usingBannerSvg.querySelectorAll(".using-dial-hand, .user-dial-hand")) : [];
+const usingRickroll = usingBannerSvg?.querySelector("#using-rickroll");
+const usingTrigger = usingBannerSvg?.querySelector("#using-trigger");
 
 if (usingBannerSvg) {
 const usingReducedMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -1173,6 +1276,12 @@ window.clearTimeout(timeoutId);
 usingAnimationTimeoutIds.clear();
 };
 
+const toggleUsingRickrollState = () => {
+const nextState = usingBannerSvg.dataset.rickroll === "on" ? "off" : "on";
+
+usingBannerSvg.dataset.rickroll = nextState;
+};
+
 const resetUsingBannerMotion = () => {
 delete usingBannerSvg.dataset.bubblesActive;
 
@@ -1198,6 +1307,15 @@ for (const dialHand of usingDialHands) {
 dialHand.style.rotate = "0deg";
 }
 };
+
+usingBannerSvg.dataset.rickroll = "off";
+
+if (usingTrigger && usingRickroll) {
+usingTrigger.style.pointerEvents = "auto";
+usingTrigger.addEventListener("click", () => {
+toggleUsingRickrollState();
+});
+}
 
 const getUsingFileLaneBounds = (lane) => {
 if (!lane.bounds) {

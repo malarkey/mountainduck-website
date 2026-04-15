@@ -562,6 +562,18 @@ translate: var(--using-lane-file-position-x, 0px) var(--using-lane-file-position
 #banner-using-svg .using-file-lane-particle[data-run-active="true"] {
 animation: using-file-lane-run var(--using-lane-file-duration, 7.4s) linear 1 both; }
 
+#banner-using-svg #using-rickroll {
+opacity: 0;
+transition: opacity .25s ease-in-out;
+visibility: hidden; }
+
+#banner-using-svg #using-trigger {
+cursor: help; }
+
+#banner-using-svg[data-rickroll="on"] #using-rickroll {
+opacity: 1;
+visibility: visible; }
+
 #banner-using-svg[data-bubbles-active="true"] .using-bubbles > circle:not(.using-bubble-particle) {
 opacity: 0; }
 
