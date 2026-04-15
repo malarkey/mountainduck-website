@@ -33,8 +33,8 @@ macos: |
  <th scope="row">No admin privileges required</th>
  <td><img src="/images/icon-tick.svg" alt="" width="32"> <span data-visibility="hidden">Yes</span></td>
  <td><img src="/images/icon-tick.svg" alt="" width="32"> <span data-visibility="hidden">Yes</span></td>
- <td>Partial <sup>1</sup></td>
- <td>Partial <sup>1</sup></td>
+ <td><img src="/images/icon-partial.svg" alt="" width="32"> <span data-visibility="hidden">Partial</span> <sup>1</sup></td>
+ <td><img src="/images/icon-partial.svg" alt="" width="32"> <span data-visibility="hidden">Partial</span> <sup>1</sup></td>
  </tr>
 
  <tr>
@@ -50,7 +50,7 @@ macos: |
  <td><img src="/images/icon-tick.svg" alt="" width="32"> <span data-visibility="hidden">Yes</span></td>
  <td><img src="/images/icon-cross.svg" alt="" width="32"> <span data-visibility="hidden">No</span></td>
  <td><img src="/images/icon-cross.svg" alt="" width="32"> <span data-visibility="hidden">No</span></td>
- <td>Partial <sup>2</sup></td>
+ <td><img src="/images/icon-partial.svg" alt="" width="32"> <span data-visibility="hidden">Partial</span> <sup>2</sup></td>
  </tr>
 
  <tr>
@@ -152,7 +152,7 @@ macos: |
  <tr>
  <th scope="row">Amazon S3</th>
  <td><img src="/images/icon-tick.svg" alt="" width="32"> <span data-visibility="hidden">Yes</span></td>
- <td>Partial <sup>3</sup></td>
+ <td><img src="/images/icon-partial.svg" alt="" width="32"> <span data-visibility="hidden">Partial</span> <sup>3</sup></td>
  <td><img src="/images/icon-tick.svg" alt="" width="32"> <span data-visibility="hidden">Yes</span></td>
  <td><img src="/images/icon-tick.svg" alt="" width="32"> <span data-visibility="hidden">Yes</span></td>
  </tr>

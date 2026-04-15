@@ -15,29 +15,28 @@
 
 <form class="buy-form">
 
-<div class="layout" data-layout="stockholm">
-
-<div></div><!-- one -->
-
-<div>
+<div class="buy-license-panel" data-buy-license-tabs data-tabs>
 
 <h2>Choose a license</h2>
 
+<div aria-label="License type" data-tab-list role="tablist">
+<button aria-controls="buy-panel-individuals" aria-selected="true" data-active="true" data-tab-button data-target="buy-panel-individuals" id="buy-tab-individuals" role="tab" type="button">Individuals</button>
+<button aria-controls="buy-panel-organisations" aria-selected="false" data-tab-button data-target="buy-panel-organisations" id="buy-tab-organisations" role="tab" type="button">Organizations</button>
+</div><!-- tablist -->
+
+<div aria-labelledby="buy-tab-individuals" data-buy-tab-panel data-tab-panel id="buy-panel-individuals" role="tabpanel">
+<p data-size="s">Buy a single-user license for one person.</p>
 <label class="radio-control">
-<input data-buy-amount="49.00" type="radio" name="buy-qty" value="1" checked>1 license
+<input data-buy-amount="49.00" data-buy-default type="radio" name="buy-qty" value="1" checked>1 license
 <div class="input-price">USD &#36;49.00</div>
 </label>
+</div><!-- tabpanel -->
 
-<hr data-function="spacer">
-
-<h3>
-<button aria-controls="buy-more" aria-expanded="false" class="btn-heading" data-disclosure-toggle data-hide-text="Hide more quantities" data-show-text="Show more quantities" data-toggle-target="buy-more" type="button">Show more quantities</button>
-</h3>
-
-<div hidden id="buy-more">
+<div aria-labelledby="buy-tab-organisations" data-buy-tab-panel data-tab-panel hidden id="buy-panel-organisations" role="tabpanel">
+<p data-size="s">Buy multiple licenses for teams, departments, and larger organisations.</p>
 
 <label class="radio-control">
-<input data-buy-amount="193.00" type="radio" name="buy-qty" value="5">5 licenses
+<input data-buy-amount="193.00" data-buy-default type="radio" name="buy-qty" value="5">5 licenses
 <div class="buy-price">USD &#36;193.00 <span>-1&#37;</span></div>
 </label>
 
@@ -56,29 +55,21 @@
 <div class="buy-price">USD &#36;1366.00 <span>-29&#37;</span></div>
 </label>
 
-<div class="radio-control">
-
-<div>
-<input id="buy-qty-custom" type="radio" name="buy-qty" value="custom"></label>
-</div><!-- one -->
-
-<div>
+<div class="radio-control radio-control-custom">
+<input id="buy-qty-custom" type="radio" name="buy-qty" value="custom">
 <label for="buy-qty-custom">Bulk buy</label>
-</div><!-- two -->
 
-<div>
-<label for="buy-custom" data-visibility="hidden">Qty</label>
-<input type="number" name="buy-custom" id="buy-custom" inputmode="numeric" min="60" step="10" style="inline-size: 8ch;">
-&nbsp;<small style="display:inline;"">USD &#36;20 per license</small>
-</div><!-- three -->
-
+<div class="buy-custom-input">
+<label data-visibility="hidden" for="buy-custom">Qty</label>
+<input id="buy-custom" inputmode="numeric" min="60" name="buy-custom" step="10" type="number" style="inline-size: 6ch;">
+<small>USD &#36;20 per license</small>
+</div><!-- buy-custom-input" -->
 </div><!-- radio-control -->
+</div><!-- tabpanel -->
 
-</div><!-- buy-more -->
+</div><!-- buy-license-panel -->
 
-</div><!-- two -->
-
-<div>
+<div id="buy-cart">
 <h2>Cart total</h2>
 
 <label for="buy-currency">Currency</label>
@@ -94,9 +85,7 @@
 <input id="buy-amount" name="amount" type="text" readonly>
 </div>
 
-</div><!-- three -->
-
-</div><!-- layout -->
+</div><!-- buy-cart -->
 
 
 
@@ -110,7 +99,7 @@
 <h2>You</h2>
 
 <div>
-<label for="buy-name">Name or company <span>*</span></label>
+<label for="buy-name">Name <span>*</span></label>
 <input id="buy-name" name="buy-name" type="text">
 <p data-size="xs">* Used in the registration key.</p>
 </div>
@@ -120,6 +109,7 @@
 <input id="buy-email" name="buy-email" type="email">
 </div>
 
+<fieldset data-buy-organisation-fields disabled hidden>
 <div>
 <label for="buy-address">Address</label>
 <textarea id="buy-address" name="buy-address"></textarea>
@@ -134,6 +124,7 @@
 <label for="buy-vat">VAT number <span>(optional)</span></label>
 <input id="buy-vat" name="buy-vat" type="text">
 </div>
+</fieldset>
 
 </div><!-- two -->
 

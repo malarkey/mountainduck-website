@@ -33,20 +33,20 @@
 * Light theme with accent colors for visual hierarchy
 */
 
---color-accent: #fd6900; /* Accent (orange) */
---color-brand: #f1c30d; /* Brand (yellow) */
---color-background-default: #111320; /* Main background */
---color-background-alt: #e4e5e7; /* Alternative background */
---color-base: #060812; /* Darker background for contrast */
---color-border: #1a6ee4; /* Border and secondary accent */
---color-text-default: #e4e5e7; /* Primary text color */
---color-text-alt: #111320; /* Text on dark backgrounds */
+--color-accent: oklch(0.6966 0.2001 44.73); /* Accent (orange) */
+--color-brand: oklch(0.8338 0.1688 91.32); /* Brand (yellow) */
+--color-background-default: oklch(0.1915 0.0265 276.87); /* Main background */
+--color-background-alt: oklch(0.9217 0.0029 264.54); /* Alternative background */
+--color-base: oklch(0.1377 0.0228 272.65); /* Darker background for contrast */
+--color-border: oklch(0.5603 0.1954 258.66); /* Border and secondary accent */
+--color-text-default: oklch(0.9217 0.0029 264.54); /* Primary text color */
+--color-text-alt: oklch(0.1915 0.0265 276.87); /* Text on dark backgrounds */
 --color-text-link: var(--color-brand);
 --color-text-link-hover: var(--color-accent);
 --color-text-link-decoration: var(--color-accent);
 --color-button-background: var(--color-brand);
 --color-button-text: var(--color-text-alt);
---color-input-background: rgba(0,0,0,.15);
+--color-input-background: oklch(0 0 0 / 0.15);
 
 /*
 * BORDER SYSTEM
@@ -125,11 +125,11 @@ UTILITY STYLES
 
 /* Text selection styling */
 ::-moz-selection {
-background-color: #e0e8ef;
+background-color: oklch(0 0 0 / 0.5);
 text-shadow: none; }
 
 ::selection {
-background-color: #e0e8ef;
+background-color: oklch(0 0 0 / 0.5);
 text-shadow: none; }
 
 /* Custom scrollbar styling */
@@ -391,9 +391,8 @@ TEXT TREATMENT CLASSES
 
 .alt-lede {
 font-family: var(--font-family-default);
-font-size: var(--font-size-m);
-font-weight: var(--font-weight-r);
-text-transform: uppercase; }
+font-size: var(--font-size-l);
+font-weight: var(--font-weight-m); }
 
 .alt-uppercase {
 font-family: var(--font-family-default);
@@ -824,6 +823,10 @@ font-family: var(--font-family-default);
 margin: 0;
 padding: 0; }
 
+fieldset {
+border-width: 0;
+padding: var(--spacing-s) 0 0; }
+
 /* Label styles */
 label {
 display: inline-block;
@@ -984,8 +987,13 @@ justify-self: end; }
 
 select, .select:after { grid-area: select; }
 
+.buy-custom-input {
+align-items: center;
+display: flex;
+gap: var(--spacing-r); }
 
-
+.buy-custom-input small {
+margin: 0; }
 /* ==========================================================================
 BUTTON COMPONENTS
 ========================================================================== */
@@ -1327,8 +1335,8 @@ scale: var(--scale-down); }
 72% { transform: rotate(0deg); } }
 
 @keyframes svg-eyelid-blink {
-0%, 7%, 9%, 31%, 33%, 34%, 58%, 60%, 72%, 74%, 78%, 80%, 100% { fill: #fff; }
-8%, 32%, 59%, 73%, 79% { fill: #fec110; } }
+0%, 7%, 9%, 31%, 33%, 34%, 58%, 60%, 72%, 74%, 78%, 80%, 100% { fill: oklch(1 0 0); }
+8%, 32%, 59%, 73%, 79% { fill: oklch(0.8433 0.1707 85.12); } }
 
 @keyframes svg-pupil-blink {
 0%, 7%, 9%, 31%, 33%, 34%, 58%, 60%, 72%, 74%, 78%, 80%, 100% { opacity: 1; }
@@ -1650,6 +1658,9 @@ margin-block-end: var(--spacing-l); }
 .layout {
 margin-block-end: var(--spacing-l); }
 
+.buy-form > * {
+margin-block-end: var(--spacing-l); }
+
 .layout > * {
 margin-block-end: var(--spacing-l);
 margin-trim: block; }
@@ -1894,6 +1905,30 @@ max-inline-size: unset; }
 [data-layout="stockholm"]#buy-discounts > *:nth-child(1) { grid-column: 10 / -1; grid-row: 1; }
 [data-layout="stockholm"]#buy-discounts > *:nth-child(2) { grid-column: 4 / 10; grid-row: 1; }
 [data-layout="stockholm"]#buy-discounts > *:nth-child(3) { grid-column: 1 / 4; grid-row: 1; }
+
+#buy-cart {
+align-self: start;
+background-color: oklch(0.1915 0.0265 276.87 / 0.9);
+position: sticky;
+top: var(--spacing-m); }
+
+.buy-form {
+display: grid;
+gap: var(--spacing-l) var(--grid-column-gap);
+grid-template-columns: var(--grid-12-col); }
+
+.buy-license-panel {
+grid-column: 4 / 10;
+grid-row: 1; }
+
+.buy-form > #buy-payment,
+.buy-form > #buy-you {
+grid-column: 1 / -1; }
+
+#buy-cart {
+grid-column: 10 / -1;
+grid-row: 1 / 4;
+margin-block-end: 0; }
 
 [data-layout="tallinn"] > * { grid-column: 3 / 7; }
 [data-layout="tirana"] > * { grid-column: 4 / 6; }

@@ -3,7 +3,7 @@ title: "Application blocked by Google"
 date: 2024-08-18
 postAuthor: "David Kocher"
 postSummary: "An OAuth consent screen issue temporarily blocked access to Google Drive and Google Cloud Storage connections."
-postCategories: ["Mountain Duck", "Cyberduck"]
+postCategories: ["Mountain Duck"]
 postTags: ["Google Drive", "Google Storage", "OAuth"]
 ---
 

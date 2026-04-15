@@ -250,6 +250,10 @@ setDisabledState(link, shouldDisable);
 const buyAmountInput = document.getElementById("buy-amount");
 const buyCustomInput = document.getElementById("buy-custom");
 const buyCustomRadio = document.getElementById("buy-qty-custom");
+const buyLicenseTabs = document.querySelector("[data-buy-license-tabs]");
+const buyLicenseTabButtons = buyLicenseTabs ? Array.from(buyLicenseTabs.querySelectorAll("[data-tab-button]")) : [];
+const buyLicenseTabPanels = buyLicenseTabs ? Array.from(buyLicenseTabs.querySelectorAll("[data-buy-tab-panel]")) : [];
+const buyOrganisationFields = document.querySelector("[data-buy-organisation-fields]");
 const buyQuantityRadios = Array.from(document.querySelectorAll('input[name="buy-qty"]'));
 
 if (buyAmountInput && buyQuantityRadios.length) {
@@ -307,6 +311,51 @@ buyCustomInput.setCustomValidity("");
 updateCustomBuyAmount(customQuantity);
 };
 
+const syncBuyOrganisationFields = () => {
+if (!(buyOrganisationFields instanceof HTMLFieldSetElement)) {
+return;
+}
+
+const organisationsTab = document.getElementById("buy-tab-organisations");
+const organisationsSelected = organisationsTab?.getAttribute("aria-selected") === "true";
+
+buyOrganisationFields.disabled = !organisationsSelected;
+buyOrganisationFields.hidden = !organisationsSelected;
+};
+
+const syncBuyPanelSelection = () => {
+if (!buyLicenseTabPanels.length) {
+syncBuyCalculator();
+syncBuyOrganisationFields();
+return;
+}
+
+const activePanel = buyLicenseTabPanels.find((panel) => !panel.hidden);
+
+if (!activePanel) {
+syncBuyCalculator();
+syncBuyOrganisationFields();
+return;
+}
+
+const checkedRadio = document.querySelector('input[name="buy-qty"]:checked');
+
+if (checkedRadio && activePanel.contains(checkedRadio)) {
+syncBuyCalculator();
+syncBuyOrganisationFields();
+return;
+}
+
+const panelDefaultRadio = activePanel.querySelector('input[name="buy-qty"][data-buy-default]') || activePanel.querySelector('input[name="buy-qty"]');
+
+if (panelDefaultRadio instanceof HTMLInputElement) {
+panelDefaultRadio.checked = true;
+}
+
+syncBuyCalculator();
+syncBuyOrganisationFields();
+};
+
 for (const radio of buyQuantityRadios) {
 radio.addEventListener("change", () => {
 if (radio.checked) {
@@ -333,7 +382,13 @@ syncBuyCalculator();
 });
 }
 
-syncBuyCalculator();
+for (const button of buyLicenseTabButtons) {
+button.addEventListener("click", () => {
+syncBuyPanelSelection();
+});
+}
+
+syncBuyPanelSelection();
 }
 
 const indexBanner = document.getElementById("index-banner");
